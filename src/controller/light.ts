@@ -18,7 +18,6 @@ const LightController: FastifyPluginAsync = async (server: FastifyInstance, opti
       }>('/light', {
         preValidation: (request, reply, done) => {
           const { username, password } = request.query
-          console.log("ici");
           
           done(username !== 'admin' ? new Error('Must be admin') : undefined) // only validate `admin` account
         }

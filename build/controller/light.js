@@ -14,7 +14,6 @@ const LightController = (server, options) => __awaiter(void 0, void 0, void 0, f
     server.get('/light', {
         preValidation: (request, reply, done) => {
             const { username, password } = request.query;
-            console.log("ici");
             done(username !== 'admin' ? new Error('Must be admin') : undefined); // only validate `admin` account
         }
     }, (request, reply) => __awaiter(void 0, void 0, void 0, function* () {
