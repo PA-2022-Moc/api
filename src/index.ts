@@ -15,7 +15,7 @@ const server = fastify({
 });
 
 //mongoDB config
-const mongoDBuri = process.env.MONGO_DB_URI || "";
+const mongoDBuri = process.env.MONGODB_URI || "";
 const client = new MongoClient(mongoDBuri);
 const mongoIdLightObject = process.env.MONGO_ID_LIGHT_OBJECT;
 
@@ -25,7 +25,7 @@ const start = () => {
   
     server.listen(port, address).then(async (addr) => {
       try {
-      console.log(`Server started successfully\nListening on ${addr}`);
+        console.log(`Server started successfully\nListening on ${addr}`);
         await client.connect();
         const database = client.db('lightcontrol');
         const lights = database.collection('light');
