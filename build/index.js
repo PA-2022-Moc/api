@@ -13,43 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fastify_1 = require("fastify");
-const mongodb_1 = require("mongodb");
 const dotenv_1 = __importDefault(require("dotenv"));
-const light_1 = require("./controller/light");
+const router_1 = require("./router");
+//get env variables
 dotenv_1.default.config();
+//server config
 const port = process.env.PORT || 5000;
 const address = "0.0.0.0";
 const server = (0, fastify_1.fastify)({
-    logger: true
+    logger: true,
 });
-// MONGODB_PWD="OfTXlVbW
-// MONGO_DB_URI=`mongodb
-// MONGO_ID_LIGHT_OBJECT
-//mongoDB
-const mongoDBuri = process.env.MONGO_DB_URI || "";
-const client = new mongodb_1.MongoClient(mongoDBuri);
-const mongoIdLightObject = process.env.MONGO_ID_LIGHT_OBJECT;
-console.log(mongoDBuri);
-console.log(mongoIdLightObject);
-// {"_id":{"$oid":"62a4637d1e15464d246f9afb"},"powerOn":false,"color":"FFFFFF","brightness":{"$numberInt":"50"},"auto":false,"music":false}
-server.register(light_1.LightController, { prefix: '/api' });
+server.register(router_1.router, { prefix: "/api" });
 const start = () => {
-    server.listen(port, address).then((addr) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            console.log(`Server started successfully\nListening on ${addr}`);
-            yield client.connect();
-            const database = client.db('lightcontrol');
-            const movies = database.collection('light');
-            // Query for a movie that has the title 'Back to the Future'
-            const query = { _id: new mongodb_1.ObjectId(mongoIdLightObject) };
-            const light = yield movies.findOne(query);
-            console.log(light);
-        }
-        finally {
-            // Ensures that the client will close when you finish/error
-            yield client.close();
-        }
-    })).catch(err => {
+    server
+        .listen(port, address)
+        .then((addr) => __awaiter(void 0, void 0, void 0, function* () { return console.log(`Server started successfully\nListening on ${addr}`); }))
+        .catch((err) => {
         server.log.error(err);
         process.exit(1);
     });

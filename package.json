@@ -17,6 +17,7 @@
     "fastify": "^3.27.4",
     "fastify-plugin": "^3.0.1",
     "mongodb": "4.5",
+    "mongoose": "^6.3.6",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {

@@ -1,11 +1,11 @@
 import { FastifyInstance } from "fastify";
-import { LightController } from "./controller/light";
 
+import { LightController } from "./infrastructure/controller/light.controller";
 
 function router(fastify: FastifyInstance, opt: any, next: Function) {
-  const authRoutes = LightController(fastify, opt);
+  const lightRoutes = new LightController();
 
-  // authRoutes.router(fastify, opt, next);
+  lightRoutes.router(fastify, opt, next);
 }
 
 export { router };
