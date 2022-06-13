@@ -24,20 +24,55 @@ class LightAdapter {
             return new light_presenter_1.LightPresenter(light);
         });
     }
-    updatePowerOn(powerOn) {
-        throw new Error("Method not implemented.");
+    updatePowerOn(id, powerOn) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { powerOn }, {
+                returnOriginal: false,
+            });
+            if (!light)
+                throw new Error("Light not found");
+            return new light_presenter_1.LightPresenter(light);
+        });
     }
-    updateColor(color) {
-        throw new Error("Method not implemented.");
+    updateColor(id, color) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { color }, {
+                returnOriginal: false,
+            });
+            if (!light)
+                throw new Error("Light not found");
+            return new light_presenter_1.LightPresenter(light);
+        });
     }
-    updateBrightness(brightness) {
-        throw new Error("Method not implemented.");
+    updateBrightness(id, brightness) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { brightness }, {
+                returnOriginal: false,
+            });
+            if (!light)
+                throw new Error("Light not found");
+            return new light_presenter_1.LightPresenter(light);
+        });
     }
-    updateAuto(auto) {
-        throw new Error("Method not implemented.");
+    updateAuto(id, auto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { auto }, {
+                returnOriginal: false,
+            });
+            if (!light)
+                throw new Error("Light not found");
+            return new light_presenter_1.LightPresenter(light);
+        });
     }
-    updateMusic(music) {
-        throw new Error("Method not implemented.");
+    updateMusic(id, music) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { music }, {
+                returnOriginal: false,
+            });
+            if (!light)
+                throw new Error("Light not found");
+            return new light_presenter_1.LightPresenter(light);
+        });
     }
 }
 exports.LightAdapter = LightAdapter;

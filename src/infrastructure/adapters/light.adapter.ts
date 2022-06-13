@@ -13,20 +13,60 @@ class LightAdapter implements ILightPort {
     if (!light) throw new Error("Light not found");
     return new LightPresenter(light);
   }
-  updatePowerOn(powerOn: boolean): Promise<Light> {
-    throw new Error("Method not implemented.");
+  async updatePowerOn(id: string, powerOn: boolean): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { powerOn },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
   }
-  updateColor(color: string): Promise<Light> {
-    throw new Error("Method not implemented.");
+  async updateColor(id: string, color: string): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { color },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
   }
-  updateBrightness(brightness: number): Promise<Light> {
-    throw new Error("Method not implemented.");
+  async updateBrightness(id: string, brightness: number): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { brightness },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
   }
-  updateAuto(auto: boolean): Promise<Light> {
-    throw new Error("Method not implemented.");
+  async updateAuto(id: string, auto: boolean): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { auto },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
   }
-  updateMusic(music: boolean): Promise<Light> {
-    throw new Error("Method not implemented.");
+  async updateMusic(id: string, music: boolean): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { music },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
   }
 }
 
