@@ -101,7 +101,7 @@ class LightController {
       async (request: UpdateBrightnessRequest, reply: FastifyReply) => {
         const id = request.params.id;
         const brightness = request.body.brightness;
-        if (!id || !brightness)
+        if (!id || brightness === undefined)
           return reply.code(400).send("Error: Arguments incorrects");
 
         const light = await this.updateBrightnessLightUsecase.execute(
