@@ -1,19 +1,19 @@
 import { FastifyInstance, FastifyPluginOptions, FastifyReply } from "fastify";
 
 import { FetchOneLightUseCase } from "../../usecases/light/fetch-one-light.usecase";
-import { UpdateAutoLightUsecase } from "../../usecases/light/update-auto-light.usecase";
+import { UpdateAutoBrightnessLightUsecase } from "../../usecases/light/update-auto-brightness-light.usecase";
 import { UpdateBrightnessLightUsecase } from "../../usecases/light/update-brigthness-light.usecase";
 import { UpdateColorLightUsecase } from "../../usecases/light/update-color-light.usecase copy";
-import { UpdateMusicLightUsecase } from "../../usecases/light/update-music-light.usecase";
+import { UpdateRandomModeLightUsecase } from "../../usecases/light/update-random-mode-light.usecase";
 import { UpdatePowerOnLightUsecase } from "../../usecases/light/update-power-on-light.usecase";
 import { LightAdapter } from "../adapters/light.adapter";
 import {
   FetchOneRequest,
   TestRequest,
-  UpdateAutoRequest,
+  UpdateAutoBrightnessRequest,
   UpdateBrightnessRequest,
   UpdateColorRequest,
-  UpdateMusicRequest,
+  UpdateRandomModeRequest,
   UpdatePowerOnRequest,
 } from "./light.types";
 
@@ -22,8 +22,8 @@ class LightController {
   updatePowerOnLightUsecase: UpdatePowerOnLightUsecase;
   updateColorLightUsecase: UpdateColorLightUsecase;
   updateBrightnessLightUsecase: UpdateBrightnessLightUsecase;
-  updateAutoLightUsecase: UpdateAutoLightUsecase;
-  updateMusicLightUsecase: UpdateMusicLightUsecase;
+  updateAutoBrightnessLightUsecase: UpdateAutoBrightnessLightUsecase;
+  updateRandomModeLightUsecase: UpdateRandomModeLightUsecase;
 
   constructor() {
     this.fetchOneLightUseCase = new FetchOneLightUseCase(new LightAdapter());
@@ -36,10 +36,9 @@ class LightController {
     this.updateBrightnessLightUsecase = new UpdateBrightnessLightUsecase(
       new LightAdapter()
     );
-    this.updateAutoLightUsecase = new UpdateAutoLightUsecase(
-      new LightAdapter()
-    );
-    this.updateMusicLightUsecase = new UpdateMusicLightUsecase(
+    this.updateAutoBrightnessLightUsecase =
+      new UpdateAutoBrightnessLightUsecase(new LightAdapter());
+    this.updateRandomModeLightUsecase = new UpdateRandomModeLightUsecase(
       new LightAdapter()
     );
   }
@@ -113,27 +112,33 @@ class LightController {
     );
 
     server.put(
-      "/lights/:id/auto",
-      async (request: UpdateAutoRequest, reply: FastifyReply) => {
+      "/lights/:id/autoBrightness",
+      async (request: UpdateAutoBrightnessRequest, reply: FastifyReply) => {
         const id = request.params.id;
-        const auto = request.body.auto;
-        if (!id || auto === undefined)
+        const autoBrightness = request.body.autoBrightness;
+        if (!id || autoBrightness === undefined)
           return reply.code(400).send("Error: Arguments incorrects");
 
-        const light = await this.updateAutoLightUsecase.execute(id, auto);
+        const light = await this.updateAutoBrightnessLightUsecase.execute(
+          id,
+          autoBrightness
+        );
         reply.code(200).send(light);
       }
     );
 
     server.put(
-      "/lights/:id/music",
-      async (request: UpdateMusicRequest, reply: FastifyReply) => {
+      "/lights/:id/randomMode",
+      async (request: UpdateRandomModeRequest, reply: FastifyReply) => {
         const id = request.params.id;
-        const music = request.body.music;
-        if (!id || music === undefined)
+        const randomMode = request.body.randomMode;
+        if (!id || randomMode === undefined)
           return reply.code(400).send("Error: Arguments incorrects");
 
-        const light = await this.updateMusicLightUsecase.execute(id, music);
+        const light = await this.updateRandomModeLightUsecase.execute(
+          id,
+          randomMode
+        );
         reply.code(200).send(light);
       }
     );

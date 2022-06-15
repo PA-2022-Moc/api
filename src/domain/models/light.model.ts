@@ -3,8 +3,8 @@ interface Light {
   powerOn: boolean;
   color: string;
   brightness: number;
-  auto: boolean;
-  music: boolean;
+  autoBrightness: boolean;
+  randomMode: boolean;
 }
 
 export { Light };

@@ -23,14 +23,14 @@ type UpdateBrightnessRequest = FastifyRequest<{
   Body: { brightness: number };
 }>;
 
-type UpdateAutoRequest = FastifyRequest<{
+type UpdateAutoBrightnessRequest = FastifyRequest<{
   Params: { id: string };
-  Body: { auto: boolean };
+  Body: { autoBrightness: boolean };
 }>;
 
-type UpdateMusicRequest = FastifyRequest<{
+type UpdateRandomModeRequest = FastifyRequest<{
   Params: { id: string };
-  Body: { music: boolean };
+  Body: { randomMode: boolean };
 }>;
 
 export {
@@ -39,6 +39,6 @@ export {
   UpdatePowerOnRequest,
   UpdateColorRequest,
   UpdateBrightnessRequest,
-  UpdateAutoRequest,
-  UpdateMusicRequest,
+  UpdateAutoBrightnessRequest,
+  UpdateRandomModeRequest,
 };

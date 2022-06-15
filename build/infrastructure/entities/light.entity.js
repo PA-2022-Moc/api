@@ -11,8 +11,8 @@ const lightSchema = new Schema({
     powerOn: Boolean,
     color: String,
     brightness: Number,
-    auto: Boolean,
-    music: Boolean,
+    autoBrightness: Boolean,
+    randomMode: Boolean,
 });
 const connMongo = mongoose_1.default.createConnection(mongodb_1.mongoDBuri);
 const LightModel = connMongo.model("Light", lightSchema);

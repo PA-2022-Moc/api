@@ -6,8 +6,8 @@ interface LightEntity {
   powerOn: boolean;
   color: string;
   brightness: number;
-  auto: boolean;
-  music: boolean;
+  autoBrightness: boolean;
+  randomMode: boolean;
 }
 
 const Schema = mongoose.Schema;
@@ -16,8 +16,8 @@ const lightSchema = new Schema<LightEntity>({
   powerOn: Boolean,
   color: String,
   brightness: Number,
-  auto: Boolean,
-  music: Boolean,
+  autoBrightness: Boolean,
+  randomMode: Boolean,
 });
 
 const connMongo = mongoose.createConnection(mongoDBuri);

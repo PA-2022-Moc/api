@@ -5,16 +5,16 @@ class LightPresenter {
   powerOn: boolean;
   color: string;
   brightness: number;
-  auto: boolean;
-  music: boolean;
+  autoBrightness: boolean;
+  randomMode: boolean;
 
   constructor(lightEntity: LightEntity) {
     this.id = lightEntity._id;
     this.powerOn = lightEntity.powerOn;
     this.color = lightEntity.color;
     this.brightness = lightEntity.brightness;
-    this.auto = lightEntity.auto;
-    this.music = lightEntity.music;
+    this.autoBrightness = lightEntity.autoBrightness;
+    this.randomMode = lightEntity.randomMode;
   }
 }
 

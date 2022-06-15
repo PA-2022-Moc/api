@@ -46,10 +46,13 @@ class LightAdapter implements ILightPort {
     if (!light) throw new Error("Light not found");
     return new LightPresenter(light);
   }
-  async updateAuto(id: string, auto: boolean): Promise<Light> {
+  async updateAutoBrightness(
+    id: string,
+    autoBrightness: boolean
+  ): Promise<Light> {
     const light = await LightModel.findOneAndUpdate(
       { _id: new ObjectId(id) },
-      { auto },
+      { autoBrightness },
       {
         returnOriginal: false,
       }
@@ -57,10 +60,10 @@ class LightAdapter implements ILightPort {
     if (!light) throw new Error("Light not found");
     return new LightPresenter(light);
   }
-  async updateMusic(id: string, music: boolean): Promise<Light> {
+  async updateRandomMode(id: string, randomMode: boolean): Promise<Light> {
     const light = await LightModel.findOneAndUpdate(
       { _id: new ObjectId(id) },
-      { music },
+      { randomMode },
       {
         returnOriginal: false,
       }

@@ -54,9 +54,9 @@ class LightAdapter {
             return new light_presenter_1.LightPresenter(light);
         });
     }
-    updateAuto(id, auto) {
+    updateAutoBrightness(id, autoBrightness) {
         return __awaiter(this, void 0, void 0, function* () {
-            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { auto }, {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { autoBrightness }, {
                 returnOriginal: false,
             });
             if (!light)
@@ -64,9 +64,9 @@ class LightAdapter {
             return new light_presenter_1.LightPresenter(light);
         });
     }
-    updateMusic(id, music) {
+    updateRandomMode(id, randomMode) {
         return __awaiter(this, void 0, void 0, function* () {
-            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { music }, {
+            const light = yield light_entity_1.LightModel.findOneAndUpdate({ _id: new mongodb_1.ObjectId(id) }, { randomMode }, {
                 returnOriginal: false,
             });
             if (!light)
