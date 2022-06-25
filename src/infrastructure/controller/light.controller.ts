@@ -3,7 +3,7 @@ import { FastifyInstance, FastifyPluginOptions, FastifyReply } from "fastify";
 import { FetchOneLightUseCase } from "../../usecases/light/fetch-one-light.usecase";
 import { UpdateAutoBrightnessLightUsecase } from "../../usecases/light/update-auto-brightness-light.usecase";
 import { UpdateBrightnessLightUsecase } from "../../usecases/light/update-brigthness-light.usecase";
-import { UpdateColorLightUsecase } from "../../usecases/light/update-color-light.usecase copy";
+import { UpdateColorLightUsecase } from "../../usecases/light/update-color-light.usecase";
 import { UpdateRandomModeLightUsecase } from "../../usecases/light/update-random-mode-light.usecase";
 import { UpdatePowerOnLightUsecase } from "../../usecases/light/update-power-on-light.usecase";
 import { LightAdapter } from "../adapters/light.adapter";
@@ -16,6 +16,7 @@ import {
   UpdateRandomModeRequest,
   UpdatePowerOnRequest,
 } from "./light.types";
+import { MQTTAdapter } from "../adapters/mqtt.adapter";
 
 class LightController {
   fetchOneLightUseCase: FetchOneLightUseCase;
@@ -28,18 +29,22 @@ class LightController {
   constructor() {
     this.fetchOneLightUseCase = new FetchOneLightUseCase(new LightAdapter());
     this.updatePowerOnLightUsecase = new UpdatePowerOnLightUsecase(
-      new LightAdapter()
+      new LightAdapter(),
+      new MQTTAdapter()
     );
     this.updateColorLightUsecase = new UpdateColorLightUsecase(
-      new LightAdapter()
+      new LightAdapter(),
+      new MQTTAdapter()
     );
     this.updateBrightnessLightUsecase = new UpdateBrightnessLightUsecase(
-      new LightAdapter()
+      new LightAdapter(),
+      new MQTTAdapter()
     );
     this.updateAutoBrightnessLightUsecase =
       new UpdateAutoBrightnessLightUsecase(new LightAdapter());
     this.updateRandomModeLightUsecase = new UpdateRandomModeLightUsecase(
-      new LightAdapter()
+      new LightAdapter(),
+      new MQTTAdapter()
     );
   }
 
