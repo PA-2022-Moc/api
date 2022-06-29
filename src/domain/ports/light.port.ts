@@ -10,5 +10,6 @@ abstract class ILightPort {
     autoBrightness: boolean
   ): Promise<Light>;
   abstract updateRandomMode(id: string, randomMode: boolean): Promise<Light>;
+  abstract updatePartyMode(id: string, partyMode: boolean): Promise<Light>;
 }
 export { ILightPort };

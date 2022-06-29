@@ -15,8 +15,10 @@ import {
   UpdateColorRequest,
   UpdateRandomModeRequest,
   UpdatePowerOnRequest,
+  UpdatePartyModeRequest,
 } from "./light.types";
 import { MQTTAdapter } from "../adapters/mqtt.adapter";
+import { UpdatePartyModeLightUsecase } from "../../usecases/light/update-party-mode-light.usecase";
 
 class LightController {
   fetchOneLightUseCase: FetchOneLightUseCase;
@@ -25,6 +27,7 @@ class LightController {
   updateBrightnessLightUsecase: UpdateBrightnessLightUsecase;
   updateAutoBrightnessLightUsecase: UpdateAutoBrightnessLightUsecase;
   updateRandomModeLightUsecase: UpdateRandomModeLightUsecase;
+  updatePartyModeLightUsecase: UpdatePartyModeLightUsecase;
 
   constructor() {
     this.fetchOneLightUseCase = new FetchOneLightUseCase(new LightAdapter());
@@ -43,6 +46,10 @@ class LightController {
     this.updateAutoBrightnessLightUsecase =
       new UpdateAutoBrightnessLightUsecase(new LightAdapter());
     this.updateRandomModeLightUsecase = new UpdateRandomModeLightUsecase(
+      new LightAdapter(),
+      new MQTTAdapter()
+    );
+    this.updatePartyModeLightUsecase = new UpdatePartyModeLightUsecase(
       new LightAdapter(),
       new MQTTAdapter()
     );
@@ -143,6 +150,22 @@ class LightController {
         const light = await this.updateRandomModeLightUsecase.execute(
           id,
           randomMode
+        );
+        reply.code(200).send(light);
+      }
+    );
+
+    server.put(
+      "/lights/:id/partyMode",
+      async (request: UpdatePartyModeRequest, reply: FastifyReply) => {
+        const id = request.params.id;
+        const partyMode = request.body.partyMode;
+        if (!id || partyMode === undefined)
+          return reply.code(400).send("Error: Arguments incorrects");
+
+        const light = await this.updatePartyModeLightUsecase.execute(
+          id,
+          partyMode
         );
         reply.code(200).send(light);
       }

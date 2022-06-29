@@ -7,6 +7,7 @@ class LightPresenter {
   brightness: number;
   autoBrightness: boolean;
   randomMode: boolean;
+  partyMode: boolean;
 
   constructor(lightEntity: LightEntity) {
     this.id = lightEntity._id;
@@ -15,6 +16,7 @@ class LightPresenter {
     this.brightness = lightEntity.brightness;
     this.autoBrightness = lightEntity.autoBrightness;
     this.randomMode = lightEntity.randomMode;
+    this.partyMode = lightEntity.partyMode;
   }
 }
 

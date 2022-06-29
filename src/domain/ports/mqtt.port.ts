@@ -9,6 +9,10 @@ abstract class IMQTTPort {
     topic: string,
     randomMode: boolean
   ): Promise<boolean>;
+  abstract publishPartyMode(
+    topic: string,
+    partyMode: boolean
+  ): Promise<boolean>;
 }
 
 export { IMQTTPort };

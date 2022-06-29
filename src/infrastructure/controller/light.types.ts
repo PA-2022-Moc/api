@@ -33,6 +33,11 @@ type UpdateRandomModeRequest = FastifyRequest<{
   Body: { randomMode: boolean };
 }>;
 
+type UpdatePartyModeRequest = FastifyRequest<{
+  Params: { id: string };
+  Body: { partyMode: boolean };
+}>;
+
 export {
   TestRequest,
   FetchOneRequest,
@@ -41,4 +46,5 @@ export {
   UpdateBrightnessRequest,
   UpdateAutoBrightnessRequest,
   UpdateRandomModeRequest,
+  UpdatePartyModeRequest,
 };

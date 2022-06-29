@@ -5,6 +5,7 @@ interface Light {
   brightness: number;
   autoBrightness: boolean;
   randomMode: boolean;
+  partyMode: boolean;
 }
 
 export { Light };

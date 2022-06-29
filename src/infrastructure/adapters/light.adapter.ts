@@ -71,6 +71,18 @@ class LightAdapter implements ILightPort {
     if (!light) throw new Error("Light not found");
     return new LightPresenter(light);
   }
+
+  async updatePartyMode(id: string, partyMode: boolean): Promise<Light> {
+    const light = await LightModel.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { partyMode },
+      {
+        returnOriginal: false,
+      }
+    );
+    if (!light) throw new Error("Light not found");
+    return new LightPresenter(light);
+  }
 }
 
 export { LightAdapter };

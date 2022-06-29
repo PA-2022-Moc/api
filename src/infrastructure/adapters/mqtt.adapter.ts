@@ -49,6 +49,16 @@ class MQTTAdapter implements IMQTTPort {
     await this.delay(DELAY_TIME);
     return MQTTAdapter.lightState;
   }
+
+  async publishPartyMode(topic: string, partyMode: boolean): Promise<boolean> {
+    MQTTAdapter.lightState = false;
+
+    clientMqtt.on("message", () => (MQTTAdapter.lightState = true));
+    clientMqtt.publish(topic, `f-${partyMode}`);
+
+    await this.delay(DELAY_TIME);
+    return MQTTAdapter.lightState;
+  }
 }
 
 export { MQTTAdapter };
