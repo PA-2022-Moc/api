@@ -5,6 +5,10 @@ abstract class IMQTTPort {
     topic: string,
     brightness: number
   ): Promise<boolean>;
+  abstract publishAutoBrightness(
+    topic: string,
+    autoBrightness: boolean
+  ): Promise<boolean>;
   abstract publishRandomMode(
     topic: string,
     randomMode: boolean

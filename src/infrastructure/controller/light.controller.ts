@@ -44,7 +44,10 @@ class LightController {
       new MQTTAdapter()
     );
     this.updateAutoBrightnessLightUsecase =
-      new UpdateAutoBrightnessLightUsecase(new LightAdapter());
+      new UpdateAutoBrightnessLightUsecase(
+        new LightAdapter(),
+        new MQTTAdapter()
+      );
     this.updateRandomModeLightUsecase = new UpdateRandomModeLightUsecase(
       new LightAdapter(),
       new MQTTAdapter()

@@ -37,6 +37,18 @@ class MQTTAdapter implements IMQTTPort {
     await this.delay(DELAY_TIME);
     return MQTTAdapter.lightState;
   }
+  async publishAutoBrightness(
+    topic: string,
+    autoBrightness: boolean
+  ): Promise<boolean> {
+    MQTTAdapter.lightState = false;
+
+    clientMqtt.on("message", () => (MQTTAdapter.lightState = true));
+    clientMqtt.publish(topic, `a-${autoBrightness}`);
+
+    await this.delay(DELAY_TIME);
+    return MQTTAdapter.lightState;
+  }
   async publishRandomMode(
     topic: string,
     randomMode: boolean
