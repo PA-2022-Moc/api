@@ -30,7 +30,10 @@ class LightController {
   updatePartyModeLightUsecase: UpdatePartyModeLightUsecase;
 
   constructor() {
-    this.fetchOneLightUseCase = new FetchOneLightUseCase(new LightAdapter());
+    this.fetchOneLightUseCase = new FetchOneLightUseCase(
+      new LightAdapter(),
+      new MQTTAdapter()
+    );
     this.updatePowerOnLightUsecase = new UpdatePowerOnLightUsecase(
       new LightAdapter(),
       new MQTTAdapter()

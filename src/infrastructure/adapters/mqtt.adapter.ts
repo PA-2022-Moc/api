@@ -8,6 +8,15 @@ class MQTTAdapter implements IMQTTPort {
   private delay = (ms: number | undefined) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
+  async publishOne(topic: string): Promise<boolean> {
+    MQTTAdapter.lightState = false;
+
+    clientMqtt.on("message", () => (MQTTAdapter.lightState = true));
+    clientMqtt.publish(topic, "get");
+
+    await this.delay(DELAY_TIME);
+    return MQTTAdapter.lightState;
+  }
   async publishPowerOn(topic: string, powerOn: boolean): Promise<boolean> {
     MQTTAdapter.lightState = false;
 

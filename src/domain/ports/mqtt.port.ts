@@ -1,4 +1,5 @@
 abstract class IMQTTPort {
+  abstract publishOne(topic: string): Promise<boolean>;
   abstract publishPowerOn(topic: string, powerOn: boolean): Promise<boolean>;
   abstract publishColor(topic: string, color: string): Promise<boolean>;
   abstract publishBrightness(
